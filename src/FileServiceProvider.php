@@ -1,6 +1,6 @@
 <?php
 
-namespace M74asoud\File;
+namespace M74asoud\File ;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -5,7 +5,6 @@ namespace M74asoud\File\Uploader;
 
 
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use M74asoud\File\Exceptions\FileHasExists;
@@ -21,7 +20,7 @@ class Uploader {
         $this->storageManager = new StorageManager();
     }
 
-    public function upload( UploadedFile $file, Model $user ): File {
+    public function upload( UploadedFile $file, $user ): File {
         $this->file = $file;
 
         if ( $this->isFileExists() ) {
@@ -32,7 +31,7 @@ class Uploader {
         return $this->saveFileIntoFileDB( $user );
     }
 
-    private function saveFileIntoFileDB( Model $user ) {
+    private function saveFileIntoFileDB( $user ) {
 
         $newName = Str::uuid() . '.' . $this->file->getClientOriginalExtension();
         $this->rename( $newName );

@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'ffmpeg'         => [
-        'ffprobe'         => [
+    'ffmpeg'          => [
+        'ffprobe' => [
             'path' => '****'
         ],
     ],
-    'FILE_URL_PREFIX' => ( env( 'FILE_URL_PREFIX', env( 'APP_URL' ) . '/storage' ) )
-];
+    'FILE_URL_PREFIX' => ( env( 'FILE_URL_PREFIX', env( 'APP_URL' ) . '/storage' ) ),
+ ];

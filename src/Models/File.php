@@ -2,7 +2,7 @@
 
 namespace M74asoud\File\Models;
 
-use App\Services\Uploader\StorageManager;
+use M74asoud\File\Uploader\StorageManager;
 use Illuminate\Database\Eloquent\Model;
 
 class File extends Model {
@@ -58,7 +58,7 @@ class File extends Model {
     }
 
     public function user() {
-        return $this->belongsTo( User::class );
+        return $this->belongsTo( \App\User::class );
     }
 
 }

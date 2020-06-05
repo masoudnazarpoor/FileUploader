@@ -10,9 +10,6 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {
-        "php-ffmpeg/php-ffmpeg": "^0.16.0"
-    },
     "autoload": {
         "psr-4": {
             "M74asoud\\File\\": "src/"
@@ -23,6 +20,9 @@
             "providers": [
                 "M74asoud\\File\\FileServiceProvider"
             ]
+        },
+        "packages": {
+            "": "php-ffmpeg/php-ffmpeg"
         }
     }
 }

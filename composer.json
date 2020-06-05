@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "M74asoud\\File\\Providers\\FileServiceProvider"
+                "M74asoud\\File\\FileServiceProvider"
             ]
         }
     }

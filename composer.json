@@ -20,9 +20,6 @@
             "providers": [
                 "M74asoud\\File\\FileServiceProvider"
             ]
-        },
-        "packages": {
-            "": "php-ffmpeg/php-ffmpeg"
         }
     }
 }

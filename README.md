@@ -55,3 +55,8 @@ $user->upload(UploadedFile $file);
     ]
 ]
 ```
+- PUBLISH VENDOR AND CONFIG
+
+```bash
+$ php artisan vendor:publish
+```

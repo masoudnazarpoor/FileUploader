@@ -1,0 +1,16 @@
+{
+    "name": "m74asoud/file",
+    "description": "this package upload your file and compatible with laravel storage",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "m74asoud",
+            "email": "m74asoud@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php-ffmpeg/php-ffmpeg": "^0.16.0"
+    }
+}

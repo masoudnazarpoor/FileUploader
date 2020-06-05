@@ -65,7 +65,7 @@ class Uploader {
 
     private function getType() {
         try {
-            return config('m74_files.accepted_types')[ $this->file->getClientMimeType() ];
+            return config('m74_file.accepted_types')[ $this->file->getClientMimeType() ];
         } catch ( Exception $err ) {
             report( $err );
             abort( 403 ,'invalid uploaded file' );

@@ -5,6 +5,7 @@ namespace M74asoud\File\Uploader;
 
 
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use M74asoud\File\Exceptions\FileHasExists;
@@ -20,23 +21,25 @@ class Uploader {
         $this->storageManager = new StorageManager();
     }
 
-    public function upload( UploadedFile $file, $user ): File {
+    public function upload( UploadedFile $file, Model $model ): File {
+
         $this->file = $file;
 
         if ( $this->isFileExists() ) {
             throw new FileHasExists();
         }
+
         $this->putFileIntoStorage();
 
-        return $this->saveFileIntoFileDB( $user );
+        return $this->saveFileIntoFileDB( $model );
     }
 
-    private function saveFileIntoFileDB( $user ) {
+    private function saveFileIntoFileDB(  Model $model ) {
 
         $newName = Str::uuid() . '.' . $this->file->getClientOriginalExtension();
         $this->rename( $newName );
 
-        $file = $user->files()->create( [
+        $file = $model->files()->create( [
             'name' => $newName,
             'size' => $this->file->getSize(),
             'type' => $this->getType(),
@@ -57,27 +60,15 @@ class Uploader {
     }
 
     private function putFileIntoStorage() {
-
-        $this->storageManager->putFileAsPublic( $this->getName(), $this->file, $this->getType() );
+        $this->storageManager->storeFile( $this->getName(), $this->file, $this->getType() );
     }
 
     private function getType() {
         try {
-            return [
-                'image/jpg'                    => 'image',
-                'image/jpeg'                   => 'image',
-                'image/png'                    => 'image',
-                'application/zip'              => 'archive',
-                'application/x-rar-compressed' => 'archive',
-                'application/x-zip-compressed' => 'archive',
-                'application/octet-stream'     => 'archive',
-                'video/mp4'                    => 'video',
-                'application/pdf'              => 'pdf',
-                'x-pdf'                        => 'pdf',
-            ][ $this->file->getClientMimeType() ];
+            return config('m74_files.accepted_types')[ $this->file->getClientMimeType() ];
         } catch ( Exception $err ) {
             report( $err );
-            abort( 403 );
+            abort( 403 ,'invalid uploaded file' );
         }
     }
 

@@ -15,13 +15,13 @@ class CreateFilesTable extends Migration
     {
         Schema::create('M74_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('fileable_id');
+            $table->string('fileable_type');
             $table->string('name');
             $table->integer('size')->comment('base on byte');
             $table->integer('time')->nullable()->comment('base on seconds');
             $table->string('type');
             $table->timestamps();
-            $table->foreign( 'user_id' )->references( 'id' )->on( 'users' )->onDelete( 'cascade' );
         });
     }
 

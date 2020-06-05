@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class File extends Model {
 
+    protected $table = 'M74_files';
     const MEDIA_TYPES = [ 'video', 'audio' ];
 
     private $storageManager;
@@ -18,7 +19,6 @@ class File extends Model {
 
     protected $fillable = [ 'name', 'size', 'type', 'time' ];
 
-
     public function isMedia() {
         return in_array( $this->type, self::MEDIA_TYPES );
     }
@@ -28,7 +28,6 @@ class File extends Model {
             $this->name, $this->type, $this->is_private
         );
     }
-
 
     public function getSizeByMegaByte() {
         return $this->size / ( 1024 * 1024 );
@@ -52,13 +51,11 @@ class File extends Model {
     }
 
     public function link() {
-        $storageManager = new StorageManager();
-
-        return $storageManager->getLink( $this->name, $this->type );
+        return $this->storageManager->getLink( $this->name, $this->type );
     }
 
-    public function user() {
-        return $this->belongsTo( \App\User::class );
+    public function fileable() {
+        return $this->morphTo();
     }
 
 }

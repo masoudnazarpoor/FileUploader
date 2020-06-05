@@ -12,5 +12,12 @@
     "minimum-stability": "stable",
     "require": {
         "php-ffmpeg/php-ffmpeg": "^0.16.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "M74asoud\\File\\Providers\\FileServiceProvider"
+            ]
+        }
     }
 }

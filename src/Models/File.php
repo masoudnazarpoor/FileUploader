@@ -17,7 +17,7 @@ class File extends Model {
         $this->storageManager = resolve( StorageManager::class );
     }
 
-    protected $fillable = [ 'name', 'size', 'type', 'time' ];
+    protected $fillable = [ 'name', 'size', 'type', 'time', 'hash' ];
 
     public function isMedia() {
         return in_array( $this->type, self::MEDIA_TYPES );
@@ -50,12 +50,20 @@ class File extends Model {
         parent::delete();
     }
 
+    public function fileable() {
+        return $this->morphTo();
+    }
+
     public function link() {
         return $this->storageManager->getLink( $this->name, $this->type );
     }
 
-    public function fileable() {
-        return $this->morphTo();
+    public function secureLink() {
+        return route( 'm74.files.secure.link', $this->hash );
+    }
+
+    public function getType() {
+        return $this->type;
     }
 
 }

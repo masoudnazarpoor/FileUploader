@@ -9,25 +9,15 @@ this package upload your file and compatible with laravel storage
 ## Installation
 
 ```bash
-$ composer require php-ffmpeg/php-ffmpeg
-```
-
-```bash
 $ composer require m74asoud/file
+
+- change filesystem default driver to public in config/app.php
+
+$ php artisan vendor:publish
+
+$ php artisan storage:link
 ```
-- HOW TO USE
 
-```bash
-use M74asoud\File\Traits\FileAble;
-use Illuminate\Http\UploadedFile;
-
-class User extends Model
-{
-    use FileAble;
-}
-
-$user->upload(UploadedFile $file);
-```
 - SET FFPROBE - FILE_BASE_URL - ACCEPTED FILE TYPE PATH IN m74_config IN CONFIG DIRECTORY
 
 ```bash
@@ -55,8 +45,27 @@ $user->upload(UploadedFile $file);
     ]
 ]
 ```
-- PUBLISH VENDOR AND CONFIG
+
+- HOW TO USE
 
 ```bash
-$ php artisan vendor:publish
+use M74asoud\File\Traits\FileAble;
+use Illuminate\Http\UploadedFile;
+
+class User extends Model
+{
+    use FileAble;
+}
+
+$user->upload(UploadedFile $file);
+
+$file->getAbsolutePath();
+$file->getTimeByMinute();
+$file->getSizeByMegaByte();
+$file->getType();
+$file->isMedia();
+$file->download();
+$file->remove();
+$file->link();
+$file->secureLink();
 ```

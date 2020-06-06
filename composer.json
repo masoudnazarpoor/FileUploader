@@ -21,5 +21,10 @@
                 "M74asoud\\File\\FileServiceProvider"
             ]
         }
+    },
+    "require": {
+        "php": "^7.1.*",
+        "laravel/framework": "^5.5.*",
+        "php-ffmpeg/php-ffmpeg": "^0.16.0"
     }
 }

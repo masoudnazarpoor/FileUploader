@@ -2,9 +2,15 @@
 FileUploader
 </h1>
 <h5>
-this package upload your file and compatible with laravel storage
-</h5>
+- this package upload your file and compatible with laravel storage<br/>
 
+- prepare direct link<br/>
+- prepare secure link<br/>
+- handle media file<br/>
+- get video time by FFMPEG<br/>
+- auto remove from storage<br/>
+- support cloud and S3 laravel storage<br/>
+</h5>
 
 ## Installation
 

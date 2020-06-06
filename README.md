@@ -1,9 +1,9 @@
 <h1>
 FileUploader
 </h1>
-<h2>
+<h4>
 this package upload your file and compatible with laravel storage
-</h2>
+</h4>
 
 
 ## Installation
